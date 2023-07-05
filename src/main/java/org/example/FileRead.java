@@ -21,12 +21,11 @@ public class FileRead {
             for (final File fileEntry : folder.listFiles()) {
                 File file = new File(path + "/" + fileEntry.getName());
                 words.addFile(file);
+                words.createWords();
             }
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             System.out.println("no file in this directory");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.exit(0);
         }
-        words.createWords();
     }
 }

@@ -2,30 +2,31 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class WordsMap {
     private HashMap<String, ArrayList<String>> wordMap = new HashMap<>();
-    private List<String> docs = new ArrayList<>();
+    private Map<String, String> docs = new HashMap<>();
 
     public void createWords() {
-        int i = 0;
-        for (String document : this.docs) {
-            for (String s : document.split(" ")) {
-                s = s.toLowerCase();
-                ArrayList<String> val;
-                if (this.wordMap.containsKey(s)) {
-                    val = this.wordMap.get(s);
-                } else {
-                    val = new ArrayList<>();
-                }
-                val.add("document " + i);
-                this.wordMap.put(s, val);
+        for(Map.Entry<String, String> entry : docs.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            this.addToMap(value, key);
+        }
+    }
+
+    private void addToMap(String document, String numDocument) {
+        for (String word : document.split(" ")) {
+            word = word.toLowerCase();
+            ArrayList<String> val;
+            if (this.wordMap.containsKey(word)) {
+                val = this.wordMap.get(word);
+            } else {
+                val = new ArrayList<>();
             }
-            i++;
+            val.add("document " + numDocument);
+            this.wordMap.put(word, val);
         }
     }
 
@@ -36,6 +37,6 @@ public class WordsMap {
     public void addFile(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         if (scanner.hasNextLine())
-            this.docs.add(scanner.nextLine());
+            this.docs.put(file.getName(), scanner.nextLine());
     }
 }
