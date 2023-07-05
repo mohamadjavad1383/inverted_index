@@ -6,7 +6,6 @@ import java.util.*;
 
 public class TestController {
 
-
     @Test
     public void negativeFoundInDocs() {
         HashMap<String, ArrayList<String>> map = new HashMap<>();

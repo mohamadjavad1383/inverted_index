@@ -1,9 +1,12 @@
 package org.example;
 
+import lombok.Getter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+@Getter
 public class WordsMap {
     private HashMap<String, ArrayList<String>> wordMap = new HashMap<>();
     private Map<String, String> docs = new HashMap<>();
@@ -28,10 +31,6 @@ public class WordsMap {
             val.add("document " + numDocument);
             this.wordMap.put(word, val);
         }
-    }
-
-    public HashMap<String, ArrayList<String>> getWordMap() {
-        return wordMap;
     }
 
     public void addFile(File file) throws FileNotFoundException {

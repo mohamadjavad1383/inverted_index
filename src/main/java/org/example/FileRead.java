@@ -1,14 +1,13 @@
 package org.example;
 
+import lombok.AllArgsConstructor;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
+@AllArgsConstructor
 public class FileRead {
     private final String path;
-
-    public FileRead(String path) {
-        this.path = path;
-    }
 
     public void readFilesFromPath(WordsMap words) {
         File folder = new File(this.path);
@@ -23,7 +22,7 @@ public class FileRead {
                 words.addFile(file);
                 words.createWords();
             }
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.out.println("no file in this directory");
             System.exit(0);
         }
