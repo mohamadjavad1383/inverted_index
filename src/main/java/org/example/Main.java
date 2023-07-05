@@ -18,8 +18,7 @@ public class Main {
         ArrayList<String> neg = new ArrayList<>();
         ArrayList<String> norm = new ArrayList<>();
         getInput(input, or, neg, norm);
-        Set<String> docs = new HashSet<>();
-        add_normal(norm, allWords, docs);
+        Set<String> docs = add_normal(norm, allWords);
         add_or(or, allWords, docs);
         del_neg(neg, allWords, docs);
         System.out.println(docs);
@@ -50,7 +49,7 @@ public class Main {
         try {
             myReader = new Scanner(myObj);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("no such file or directory");
         }
         StringBuilder data = new StringBuilder();
         while (myReader.hasNextLine())
@@ -80,13 +79,15 @@ public class Main {
         }
     }
 
-    public static void add_normal(ArrayList<String> norm, HashMap<String, ArrayList<String>> allWords, Set<String> docs) {
+    public static Set<String> add_normal(ArrayList<String> norm, HashMap<String, ArrayList<String>> allWords) {
+        Set<String> docs = new HashSet<>();
         if (norm.size() != 0) {
             docs.addAll(allWords.get(norm.get(0)));
             for (String s : norm) {
                 if (allWords.get(s) != null) docs.retainAll(allWords.get(s));
             }
         }
+        return docs;
     }
 
 }

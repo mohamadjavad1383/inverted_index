@@ -15,8 +15,7 @@
 //                add("chetori salam");
 //            }
 //        };
-//        HashMap<String, ArrayList<String>> allWords = new HashMap<>();
-//        Main.createMap(documents,allWords);
+//        HashMap<String, ArrayList<String>> allWords = Main.createMap(documents);
 //        HashMap<String, ArrayList<String>> map = new HashMap<>();
 //        map.put("salam", new ArrayList<>(){{
 //            add("document 0");
