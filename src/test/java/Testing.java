@@ -85,6 +85,26 @@ public class Testing {
         Assertions.assertEquals(docs, new HashSet<>(Arrays.asList("document 0", "document 1")));
     }
 
-//    @Test
-//    public void
+    @Test
+    public void testNormal() {
+        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        map.put("salam", new ArrayList<>(){{
+            add("document 0");
+            add("document 1");
+        }});
+        map.put("bar", new ArrayList<>(){{
+            add("document 0");
+        }});
+        map.put("to", new ArrayList<>(){{
+            add("document 0");
+        }});
+        map.put("chetori", new ArrayList<>(){{
+            add("document 1");
+        }});
+        ArrayList<String> norm = new ArrayList<>() {{
+            add("bar");
+        }};
+        Set<String> docs = Main.add_normal(norm, map);
+        Assertions.assertEquals(docs, new HashSet<>(List.of("document 0")));
+    }
 }
