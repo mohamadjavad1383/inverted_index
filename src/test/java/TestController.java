@@ -8,7 +8,7 @@ public class TestController {
 
     @Test
     public void negativeFoundInDocs() {
-        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        HashMap<String, List<String>> map = new HashMap<>();
         map.put("salam", new ArrayList<>() {{
             add("document 0");
             add("document 1");
@@ -35,7 +35,7 @@ public class TestController {
 
     @Test
     public void twoDifferentDocumentsOR() {
-        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        HashMap<String, List<String>> map = new HashMap<>();
         map.put("salam", new ArrayList<>() {{
             add("document 0");
             add("document 1");
@@ -60,7 +60,7 @@ public class TestController {
 
     @Test
     public void addOneNormalWord() {
-        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        HashMap<String, List<String>> map = new HashMap<>();
         map.put("salam", new ArrayList<>() {{
             add("document 0");
             add("document 1");

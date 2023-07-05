@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Controller {
     private static Controller instance;
@@ -39,17 +40,17 @@ public class Controller {
         }
     }
 
-    public Set<String> deleteNeg(ArrayList<String> neg, HashMap<String, ArrayList<String>> allWords, Set<String> docs) {
+    public Set<String> deleteNeg(ArrayList<String> neg, HashMap<String, List<String>> allWords, Set<String> docs) {
         Set<String> documents = new HashSet<>(docs);
         for (String s : neg) {
             if (allWords.get(s) != null) {
-                documents.removeIf(doc -> allWords.get(s).contains(doc));
+                documents = documents.stream().filter(doc -> !allWords.get(s).contains(doc)).collect(Collectors.toSet());
             }
         }
         return documents;
     }
 
-    public Set<String> addOr(ArrayList<String> or, HashMap<String, ArrayList<String>> allWords, Set<String> docs) {
+    public Set<String> addOr(ArrayList<String> or, HashMap<String, List<String>> allWords, Set<String> docs) {
         Set<String> documents = new HashSet<>(docs);
         for (String s : or) {
             if (allWords.get(s) != null)
@@ -58,7 +59,7 @@ public class Controller {
         return documents;
     }
 
-    public Set<String> addNormal(ArrayList<String> norm, HashMap<String, ArrayList<String>> allWords) {
+    public Set<String> addNormal(ArrayList<String> norm, HashMap<String, List<String>> allWords) {
         Set<String> docs = new HashSet<>();
         if (norm.size() != 0) {
             docs.addAll(allWords.get(norm.get(0)));

@@ -20,8 +20,8 @@ public class FileRead {
             for (final File fileEntry : folder.listFiles()) {
                 File file = new File(path + "/" + fileEntry.getName());
                 words.addFile(file);
-                words.createWords();
             }
+            words.createWords();
         } catch (FileNotFoundException e) {
             System.out.println("no file in this directory");
             System.exit(0);

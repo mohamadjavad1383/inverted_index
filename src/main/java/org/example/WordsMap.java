@@ -8,7 +8,7 @@ import java.util.*;
 
 @Getter
 public class WordsMap {
-    private HashMap<String, ArrayList<String>> wordMap = new HashMap<>();
+    private HashMap<String, List<String>> wordMap = new HashMap<>();
     private Map<String, String> docs = new HashMap<>();
 
     public void createWords() {
@@ -21,16 +21,20 @@ public class WordsMap {
 
     private void addToMap(String document, String numDocument) {
         for (String word : document.split(" ")) {
-            word = word.toLowerCase();
-            ArrayList<String> val;
-            if (this.wordMap.containsKey(word)) {
-                val = this.wordMap.get(word);
-            } else {
-                val = new ArrayList<>();
-            }
-            val.add("document " + numDocument);
-            this.wordMap.put(word, val);
+            this.wordMap.put(word, checkWord(word, numDocument));
         }
+    }
+
+    private List<String> checkWord(String word, String numDocument) {
+        word = word.toLowerCase();
+        List<String> val;
+        if (this.wordMap.containsKey(word)) {
+            val = this.wordMap.get(word);
+        } else {
+            val = new ArrayList<>();
+        }
+        val.add("document " + numDocument);
+        return val;
     }
 
     public void addFile(File file) throws FileNotFoundException {
