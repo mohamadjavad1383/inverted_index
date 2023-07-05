@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class Words {
+public class WordsMap {
     private HashMap<String, ArrayList<String>> wordMap = new HashMap<>();
     private List<String> docs = new ArrayList<>();
 

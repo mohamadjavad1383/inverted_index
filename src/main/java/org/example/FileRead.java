@@ -10,12 +10,12 @@ public class FileRead {
         this.path = path;
     }
 
-    public void readFilesFromPath(Words words) {
+    public void readFilesFromPath(WordsMap words) {
         File folder = new File(this.path);
         this.listFilesForFolder(folder, words);
     }
 
-    private void listFilesForFolder(final File folder, Words words) {
+    private void listFilesForFolder(final File folder, WordsMap words) {
 
         try {
             for (final File fileEntry : folder.listFiles()) {
