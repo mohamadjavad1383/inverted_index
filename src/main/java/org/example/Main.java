@@ -10,8 +10,7 @@ public class Main {
         for (int i = 0; i < 2; i++) {
             readFile(documents, i);
         }
-        HashMap<String, ArrayList<String>> allWords = new HashMap<>();
-        createMap(documents, allWords);
+        HashMap<String, ArrayList<String>> allWords = createMap(documents);
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -26,7 +25,8 @@ public class Main {
         System.out.println(docs);
     }
 
-    public static void createMap(ArrayList<String> documents, HashMap<String, ArrayList<String>> allWords) {
+    public static HashMap<String, ArrayList<String>> createMap(ArrayList<String> documents) {
+        HashMap<String, ArrayList<String>> allWords = new HashMap<>();
         int i = 0;
         for (String document : documents) {
             for (String s : document.split(" ")) {
@@ -41,10 +41,11 @@ public class Main {
             }
             i++;
         }
+        return allWords;
     }
 
     public static void readFile(ArrayList<String> documents, int i) {
-        File myObj = new File("/home/mohammadjavad/IdeaProjects/untitled/src/main/java/org/example/filename" + i + ".txt");
+        File myObj = new File("src/main/java/org/example/filename" + i + ".txt");
         Scanner myReader;
         try {
             myReader = new Scanner(myObj);
