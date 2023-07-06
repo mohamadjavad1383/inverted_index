@@ -80,4 +80,19 @@ public class TestController {
         Set<String> docs = Controller.getInstance().addNormal(norm, map);
         Assertions.assertEquals(docs, new HashSet<>(List.of("document 0")));
     }
+
+    @Test
+    public void getInput_AllTypes_Added() {
+        String input = "hello -hi -hey +bye +goodbye";
+        List<String> normExpected = new ArrayList<>(List.of("hello"));
+        List<String> negExpected = new ArrayList<>(Arrays.asList("hi", "hey"));
+        List<String> orExpected = new ArrayList<>(Arrays.asList("bye", "goodbye"));
+        List<String> norm = new ArrayList<>();
+        List<String> or = new ArrayList<>();
+        List<String> neg = new ArrayList<>();
+        Controller.getInstance().getInput(input, or, neg,norm);
+        Assertions.assertEquals(normExpected, norm);
+        Assertions.assertEquals(orExpected, or);
+        Assertions.assertEquals(negExpected, neg);
+    }
 }

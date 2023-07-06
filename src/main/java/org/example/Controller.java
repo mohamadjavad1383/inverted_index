@@ -22,9 +22,9 @@ public class Controller {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input: \n");
         String input = scanner.nextLine();
-        ArrayList<String> or = new ArrayList<>();
-        ArrayList<String> neg = new ArrayList<>();
-        ArrayList<String> norm = new ArrayList<>();
+        List<String> or = new ArrayList<>();
+        List<String> neg = new ArrayList<>();
+        List<String> norm = new ArrayList<>();
         getInput(input, or, neg, norm);
         Set<String> docs = addNormal(norm, words.getWordMap());
         docs = addOr(or, words.getWordMap(), docs);
@@ -32,7 +32,7 @@ public class Controller {
         System.out.println(docs);
     }
 
-    public void getInput(String input, ArrayList<String> or, ArrayList<String> neg, ArrayList<String> norm) {
+    public void getInput(String input, List<String> or, List<String> neg, List<String> norm) {
         for (String s : input.split(" ")) {
             if (s.charAt(0) == '+') or.add(s.substring(1));
             else if (s.charAt(0) == '-') neg.add(s.substring(1));
@@ -40,7 +40,7 @@ public class Controller {
         }
     }
 
-    public Set<String> deleteNeg(ArrayList<String> neg, HashMap<String, List<String>> allWords, Set<String> docs) {
+    public Set<String> deleteNeg(List<String> neg, HashMap<String, List<String>> allWords, Set<String> docs) {
         Set<String> documents = new HashSet<>(docs);
         for (String s : neg) {
             if (allWords.get(s) != null) {
@@ -50,7 +50,7 @@ public class Controller {
         return documents;
     }
 
-    public Set<String> addOr(ArrayList<String> or, HashMap<String, List<String>> allWords, Set<String> docs) {
+    public Set<String> addOr(List<String> or, HashMap<String, List<String>> allWords, Set<String> docs) {
         Set<String> documents = new HashSet<>(docs);
         for (String s : or) {
             if (allWords.get(s) != null)
@@ -59,7 +59,7 @@ public class Controller {
         return documents;
     }
 
-    public Set<String> addNormal(ArrayList<String> norm, HashMap<String, List<String>> allWords) {
+    public Set<String> addNormal(List<String> norm, HashMap<String, List<String>> allWords) {
         Set<String> docs = new HashSet<>();
         if (norm.size() != 0) {
             docs.addAll(allWords.get(norm.get(0)));
