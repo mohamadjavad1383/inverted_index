@@ -8,8 +8,8 @@ import java.util.*;
 
 @Getter
 public class WordsMap {
-    private HashMap<String, List<String>> wordMap = new HashMap<>();
-    private Map<String, String> docs = new HashMap<>();
+    private final HashMap<String, List<String>> wordMap = new HashMap<>();
+    private final Map<String, String> docs = new HashMap<>();
 
     public void createWords() {
         for(Map.Entry<String, String> entry : docs.entrySet()) {
@@ -26,13 +26,7 @@ public class WordsMap {
     }
 
     private List<String> checkWord(String word, String numDocument) {
-        word = word.toLowerCase();
-        List<String> val;
-        if (this.wordMap.containsKey(word)) {
-            val = this.wordMap.get(word);
-        } else {
-            val = new ArrayList<>();
-        }
+        List<String> val = this.wordMap.getOrDefault(word.toLowerCase(), new ArrayList<>());
         val.add("document " + numDocument);
         return val;
     }
