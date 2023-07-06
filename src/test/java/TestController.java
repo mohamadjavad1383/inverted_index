@@ -7,7 +7,7 @@ import java.util.*;
 public class TestController {
 
     @Test
-    public void negativeFoundInDocs() {
+    public void deleteNeg_ExistInDocs_GetRemoved() {
         HashMap<String, List<String>> map = new HashMap<>();
         map.put("salam", new ArrayList<>() {{
             add("document 0");
@@ -34,7 +34,7 @@ public class TestController {
     }
 
     @Test
-    public void twoDifferentDocumentsOR() {
+    public void addOr_DifferentDocs_GetOr() {
         HashMap<String, List<String>> map = new HashMap<>();
         map.put("salam", new ArrayList<>() {{
             add("document 0");
@@ -59,7 +59,7 @@ public class TestController {
     }
 
     @Test
-    public void addOneNormalWord() {
+    public void addNormal_OneDoc_AddedToDocs() {
         HashMap<String, List<String>> map = new HashMap<>();
         map.put("salam", new ArrayList<>() {{
             add("document 0");
