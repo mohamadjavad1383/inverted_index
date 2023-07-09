@@ -41,21 +41,18 @@ public class Controller {
     }
 
     public Set<String> deleteNeg(List<String> neg, HashMap<String, List<String>> allWords, Set<String> docs) {
-        Set<String> documents = new HashSet<>(docs);
-        for (String s : neg) {
-            if (allWords.get(s) != null) {
-                documents = documents.stream().filter(doc -> !allWords.get(s).contains(doc)).collect(Collectors.toSet());
-            }
-        }
-        return documents;
+        return docs.stream().filter(doc -> !neg.stream()
+                .filter(allWords::containsKey)
+                .flatMap(s -> allWords.get(s).stream())
+                .collect(Collectors.toSet()).contains(doc)).collect(Collectors.toSet());
     }
 
     public Set<String> addOr(List<String> or, HashMap<String, List<String>> allWords, Set<String> docs) {
         Set<String> documents = new HashSet<>(docs);
-        for (String s : or) {
-            if (allWords.get(s) != null)
-                documents.addAll(allWords.get(s));
-        }
+        documents.addAll(or.stream()
+                .filter(allWords::containsKey)
+                .flatMap(s -> allWords.get(s).stream())
+                .collect(Collectors.toSet()));
         return documents;
     }
 
